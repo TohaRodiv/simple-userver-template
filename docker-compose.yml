@@ -12,7 +12,10 @@ services:
         volumes:
           - .:/service_template:rw
         ports:
-          - 8080:8080
+          - 8082:8080
         working_dir: /service_template
-        entrypoint:
-          - ./tests/run_as_user.sh
+        entrypoint: >
+          ./tests/run_as_user.sh
+          ./build_release/service_template
+          --config ./configs/static_config.yaml
+          --config_vars ./configs/config_vars.yaml
