@@ -28,7 +28,7 @@ std::string SayHelloTo(std::string_view name) {
     name = "unknown user";
   }
 
-  return fmt::format("Hello, {}!\n", name);
+  return fmt::format("Курлык-курлык!\n");
 }
 
 void AppendHello(userver::components::ComponentList &component_list) {
