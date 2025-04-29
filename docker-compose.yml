@@ -19,3 +19,18 @@ services:
           ./build_release/service_template
           --config ./configs/static_config.yaml
           --config_vars ./configs/config_vars.yaml
+
+
+    service_template-build:
+      image: ghcr.io/userver-framework/ubuntu-22.04-userver-pg:latest
+      privileged: true
+      environment:
+        - PREFIX=${PREFIX:-~/.local}
+        - CCACHE_DIR=/service_template/.ccache
+        - CORES_DIR=/cores
+      volumes:
+        - .:/service_template:rw
+      working_dir: /service_template
+      entrypoint: >
+        ./tests/run_as_user.sh
+        make build-release
